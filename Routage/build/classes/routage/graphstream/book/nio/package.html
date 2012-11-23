@@ -1,0 +1,29 @@
+<body>
+Communication with native libraries.
+
+<h2>Purpose</h2>
+
+<p>This package is not really tied to I/O as its name could suggest. The name
+was kept since it mimics (and internally uses) the <code>ByteBuffer</code>
+classes of the <code>java.nio</code> package.</p>
+
+<p>The purpose of this package is to handle memory pools that are not stored in
+areas managed by the JVM but inside memory zones allocated by native
+interfaces.</p>
+
+<p>It also allows to transparently define memory zone both usable by JVM/JNI
+and GCJ/CNI. GCJ allows to compile Java code into machine code like do most
+compilers, avoiding the use of a virtual machine.</p>
+
+<p>There are six data classes mapping to corresponding Java native types: byte,
+short, int, long, float and double. Each as a <code>&lt;Type&gt;Data</code>
+class that is implemented either for VMs by a <code>&lt;Type&gt;DataJvm</code>
+class or for CNI by a <code>&lt;Type&gt;DataCni</code> class. This makes a
+total of 18 classes.</p>
+
+<p>The user never sees the classes suffixed by <code>Jvm</code> or
+<code>Cni</code>, they are created automatically by the
+<code>allocate_direct(int)</code> method present in each
+<code>&lt;Type&gt;Data</code> class.</p>
+
+</body>
